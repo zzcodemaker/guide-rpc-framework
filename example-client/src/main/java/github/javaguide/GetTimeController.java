@@ -2,7 +2,9 @@ package github.javaguide;
 
 import github.javaguide.annotation.RpcReference;
 import github.javaguide.annotation.RpcService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class GetTimeController {
 
     @RpcReference(version = "1.0", group = "time")
