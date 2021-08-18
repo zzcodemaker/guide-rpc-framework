@@ -47,16 +47,22 @@ public class RpcMessageEncoder extends MessageToByteEncoder<RpcMessage> {
     @Override
     protected void encode(ChannelHandlerContext ctx, RpcMessage rpcMessage, ByteBuf out) {
         try {
+            // 1.magic code 4
             out.writeBytes(RpcConstants.MAGIC_NUMBER);
+            // 2.version 1
             out.writeByte(RpcConstants.VERSION);
-            // leave a place to write the value of full length
+            // 3.leave a place to write the value of full length 4
             out.writerIndex(out.writerIndex() + 4);
+            // 4.message type 1
             byte messageType = rpcMessage.getMessageType();
             out.writeByte(messageType);
+            // 5.codec 1
             out.writeByte(rpcMessage.getCodec());
+            // 6.compress 1
             out.writeByte(CompressTypeEnum.GZIP.getCode());
+            // 7.request id 4
             out.writeInt(ATOMIC_INTEGER.getAndIncrement());
-            // build full length
+            // 8.body
             byte[] bodyBytes = null;
             int fullLength = RpcConstants.HEAD_LENGTH;
             // if messageType is not heartbeat message,fullLength = head length + body length

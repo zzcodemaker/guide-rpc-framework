@@ -13,7 +13,7 @@ public class RpcConstants {
     /**
      * Magic number. Verify RpcMessage
      */
-    public static final byte[] MAGIC_NUMBER = {(byte) 'g', (byte) 'r', (byte) 'p', (byte) 'c'};
+    public static final byte[] MAGIC_NUMBER = {(byte) 'a', (byte) 'l', (byte) 'h', (byte) 'p'};
     public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
     //version information
     public static final byte VERSION = 1;
